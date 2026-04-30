@@ -32,7 +32,7 @@ X_test_vec = vectorizer.transform(X_test)
 
 # Train model
 print("⚙️ Training model...")
-model = LogisticRegression()
+model = LogisticRegression(class_weight='balanced', max_iter=200)
 model.fit(X_train_vec, y_train)
 
 # Predict
@@ -55,3 +55,13 @@ print("\n🧪 Testing:")
 print(predict("Oh great, another exam"))
 print(predict("I love waiting in traffic"))
 print(predict("This is a beautiful day"))
+print(predict("Oh great, another Monday morning"))
+print(predict("I am so happy today"))
+print(predict("Wow, my phone died again, amazing"))
+print(predict("This food tastes really good"))
+
+
+import pickle
+
+pickle.dump(model, open("models/model.pkl", "wb"))
+pickle.dump(vectorizer, open("models/vectorizer.pkl", "wb"))
